@@ -5,7 +5,7 @@ import { AuthContext } from '../../contexts/AuthContextProvider';
 import logo from '../Auth/assets/logo.png'
 import '../Auth/styles/auth.scss'
 
-const SignIn = () => {
+const LogIn = () => {
 
     const { email, setEmail, password, setPassword } = useContext(AuthContext);
     const [showPassword, setShowPassword] = useState(false);
@@ -84,4 +84,4 @@ const SignIn = () => {
   )
 }
 
-export default SignIn
+export default LogIn
