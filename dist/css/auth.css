@@ -1,0 +1,63 @@
+.logo__container {
+  width: 45%;
+}
+
+.auth__container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 55%;
+}
+.auth__container h1 {
+  color: #141414;
+  font-size: 28px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 150%;
+}
+.auth__container h1 span {
+  color: #37BBCA;
+}
+.auth__container div {
+  display: flex;
+  justify-content: space-between;
+}
+.auth__container div hr {
+  color: #CECECE;
+  height: 0.1px;
+  margin-top: 1.6rem;
+  margin-inline: 0.7rem;
+  opacity: 50%;
+  width: 153px;
+}
+.auth__container div h3 {
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 400;
+}
+.auth__container div h3 span {
+  color: #37BBCA;
+  cursor: pointer;
+}
+.auth__container div h3 span:hover {
+  text-decoration: underline;
+}
+.auth__container .auth__container--form input {
+  border-radius: 4px;
+  border: 1.25px solid var(--grey-grey-03, #CECECE);
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  height: 2.875rem;
+  padding-inline: 1.5rem;
+  margin-block: 1rem;
+  width: 552px;
+}
+.auth__container .auth__container--form input :focus {
+  outline-color: #CECECE;
+}
+.auth__container .auth__container--form input ::placeholder {
+  font-family: "Roboto", sans-serif;
+  font-size: 1.5rem;
+}/*# sourceMappingURL=auth.css.map */
