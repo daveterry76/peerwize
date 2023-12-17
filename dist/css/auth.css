@@ -1,12 +1,35 @@
 .logo__container {
+  background: linear-gradient(0deg, rgba(8, 131, 149, 0.8) 0%, rgba(8, 131, 149, 0.8) 100%), url("https://www.figma.com/file/pKjMht1X2geCKktU24hFDd/image/2d83ec7d9d394c6e3adc95e4705c418d5ac9cc0f"), lightgray 50%/cover no-repeat;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
   width: 45%;
 }
+.logo__container h6 {
+  color: var(--secondary-secondary-04-main, #FBA04B);
+  font-size: 23px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 150%;
+  margin-top: 0;
+}
 
+@media screen and (max-width: 481px) {
+  .logo__container {
+    display: none;
+  }
+}
 .auth__container {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding-block: 2rem;
+  padding-inline: 4rem;
   width: 55%;
 }
 .auth__container h1 {
@@ -43,21 +66,168 @@
 .auth__container div h3 span:hover {
   text-decoration: underline;
 }
-.auth__container .auth__container--form input {
+.auth__container .auth__container--form {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+.auth__container .auth__container--form input, .auth__container .auth__container--form select {
   border-radius: 4px;
   border: 1.25px solid var(--grey-grey-03, #CECECE);
   display: flex;
+  font-size: 1rem;
   align-items: flex-start;
   gap: 8px;
-  height: 2.875rem;
-  padding-inline: 1.5rem;
-  margin-block: 1rem;
-  width: 552px;
+  height: 2.575rem;
+  padding-inline: 1rem;
+  position: relative;
+  margin-block: 0.5rem;
+  width: 530px;
 }
-.auth__container .auth__container--form input :focus {
-  outline-color: #CECECE;
+.auth__container .auth__container--form input:focus, .auth__container .auth__container--form select:focus {
+  outline: none;
 }
-.auth__container .auth__container--form input ::placeholder {
+.auth__container .auth__container--form select {
+  background: none;
+  color: rgba(132, 132, 132, 0.9254901961);
+  display: flex;
+  justify-content: center;
+  font-size: 0.9rem;
+  width: 100%;
+}
+.auth__container .auth__container--form select option {
   font-family: "Roboto", sans-serif;
-  font-size: 1.5rem;
+  font-size: 0.9rem;
+}
+.auth__container .auth__container--form div {
+  display: flex;
+  position: relative;
+}
+.auth__container .auth__container--form .auth__container--password {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  position: relative;
+}
+.auth__container .auth__container--form svg {
+  cursor: pointer;
+  height: 1rem;
+  margin-top: 1.8rem;
+  position: absolute;
+  right: 10px;
+  top: -5px;
+  width: 1.5rem;
+}
+.auth__container .auth__container--form .loading {
+  position: absolute;
+  bottom: 259.5px;
+  right: 130px;
+}
+.auth__container .auth__container--form p {
+  color: var(--primary-primary-06, #2C96A2);
+  cursor: pointer;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 150%;
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+}
+.auth__container .auth__container--form p:hover {
+  text-decoration: underline;
+}
+.auth__container .auth__container--form .error {
+  color: var(--accent-red, #DA4747);
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 150%;
+}
+.auth__container .auth__container--form h6 {
+  color: var(--grey-grey-04, #848484);
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: 150%;
+  margin: 0 auto 1.5rem;
+  justify-self: flex-start;
+}
+.auth__container .auth__container--btn, .auth__container .reset__password--btn {
+  border: 1px;
+  border-radius: 4px;
+  cursor: pointer;
+  background: var(--primary-primary-05-main, #37BBCA);
+  color: #FFF;
+  font-size: 1rem;
+  height: 2.875rem;
+  padding: 0.6875rem 1rem;
+  transition: background-color 0.5s ease-in 0.1ms;
+  width: 100%;
+}
+.auth__container .auth__container--btn:hover, .auth__container .reset__password--btn:hover {
+  background-color: #5fc9d5;
+}
+.auth__container .reset__password--btn:disabled {
+  background: #CECECE;
+  color: #000;
+  cursor: text;
+  opacity: 50%;
+  pointer-events: none;
+  text-decoration: none;
+}
+.auth__container h5 {
+  color: var(--colour-styles-black-01, #111);
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 150%;
+}
+.auth__container h5 span {
+  color: var(--primary-primary-05-main, #37BBCA);
+  cursor: pointer;
+}
+.auth__container h5 span:hover {
+  text-decoration: underline;
+}
+
+::placeholder {
+  font-family: "Roboto", sans-serif;
+  font-size: 0.9rem;
+}
+
+@media screen and (max-width: 481px) {
+  .auth__container {
+    align-items: flex-start;
+    padding-top: 4rem;
+    padding-inline: 3rem;
+    text-align: center;
+    width: 100%;
+  }
+  .auth__container h3 {
+    text-align: left;
+  }
+  .auth__container h1 {
+    font-size: 1.6rem;
+    text-align: left;
+  }
+  .auth__container div hr {
+    display: none;
+  }
+  .auth__container div h3 {
+    font-size: 0.8rem;
+  }
+  .auth__container .auth__container--form input {
+    width: 250px;
+  }
+  .auth__container .auth__container--form p {
+    display: flex;
+    justify-content: flex-start;
+  }
+  .auth__container h5 {
+    font-size: 11.5px;
+  }
+  ::placeholder {
+    font-family: "Roboto", sans-serif;
+    font-size: 0.7rem;
+  }
 }/*# sourceMappingURL=auth.css.map */

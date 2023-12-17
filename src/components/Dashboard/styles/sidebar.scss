@@ -1,0 +1,106 @@
+$primary-bg-color: #2C96A2;
+$secondary-bg-color: #FBA04B;
+
+.sidebar {
+    background: var(--Primary-Primary06, $primary-bg-color);
+    height: 100%;
+    padding: 2.375rem;
+    padding-right: 2rem;
+    position: sticky;
+    top: 0;
+    overflow-y: auto;
+    .sidebar__logo {
+        cursor: pointer;
+        display: flex;
+        margin-bottom: 2.5rem;
+        img {
+            height: 3.75rem;
+            width: 3.6875rem;
+        }
+        h3 {
+            color: var(--Primary-Primary01, #EBF8FA);
+            font-family: Roboto;
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 700;
+            line-height: 150%;
+        }
+    }
+    .sidebar__links {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 6rem;
+        a {
+            border-radius: 10px;
+            display: flex;
+            gap: 1rem;
+            padding-left: 1.5rem;
+            text-decoration: none;
+        }
+        .sidebar__icon {
+            width: 1rem;
+        }
+        p {
+            color: var(--Accent-White, #FFF);
+            font-size: 1rem;
+            font-family: Roboto;
+            font-style: normal;
+            font-weight: 400;
+            text-decoration: none;
+            &:active {
+                border-radius: 4px;
+                background: var(--secondary-secondary-04-main, $secondary-bg-color);
+            }
+        }
+    }
+
+    .ad__professional {
+        border-radius: 8px;
+        background: var(--Accent-White, #FFF);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        height: 13rem;
+        margin-bottom: 4rem;
+        padding: .75rem 1rem;
+        width: 16.25rem;
+        svg {
+            background: var(--Primary-Primary06, #2C96A2);
+            border-radius: 100%;
+            padding: 0.5rem;
+        }
+        p {
+            align-self: stretch;
+            color: var(--Accent-Black, #141414);
+            font-family: Roboto;
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: 150%;
+            text-align: center;
+        }
+        button {
+            border-style: none;
+            border-radius: 4px;
+            background: var(--Primary-Primary06, $primary-bg-color);
+            cursor: pointer;
+            color: #FFF;
+            padding: .5rem 1rem;
+            width: 100%;
+        }
+    }
+
+    .sidebar__logout--btn {
+        border-radius: 4px;
+        background: var(--Primary-Primary01, #EBF8FA);
+        border-style: none;
+        cursor: pointer;
+        display: flex;
+        gap: 0.5rem;
+        justify-content: center;
+        align-items: center;
+        padding: .6875rem 1rem;
+        text-align: center;
+        width: 100%;
+    }
+}

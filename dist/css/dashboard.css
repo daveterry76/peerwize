@@ -1,0 +1,12 @@
+.dashboard {
+  display: flex;
+  width: 100%;
+}
+
+.dashboard__sidebar {
+  width: 40%;
+}
+
+.dashboard__main {
+  width: 60%;
+}/*# sourceMappingURL=dashboard.css.map */

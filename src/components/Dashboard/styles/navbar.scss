@@ -1,0 +1,53 @@
+.navbar {
+    background: var(--Primary-00, #F7FCFD);
+    box-shadow: 0px 2px 8px 0px rgba(17, 0, 255, 0.16);
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem 3rem 0 1rem;
+    h1 {
+        font-size: 1.4375rem;
+    }
+}
+
+.profile__icon {
+    display: flex;
+    gap: 1rem;
+}
+
+.profile__icon--notif {
+    cursor: pointer;
+    height: 1.5rem;
+    margin-top: 0.7rem;
+    width: 1.5rem;
+}
+
+.profile__icon--profile {
+    cursor: pointer;
+    display: flex;
+    justify-content: baseline;
+    gap: 0.5rem;
+
+    div {
+        line-height: 170%;
+        h4 {
+            color: var(--Accent-Black, #141414);
+            font-size: 1.1875rem;
+            font-style: normal;
+            font-weight: 700;
+            margin-block: 0;
+        }
+        p {
+            color: var(--Grey-Grey04, #848484);
+            font-family: Roboto;
+            font-size: 1rem;
+            font-style: normal;
+            font-weight: 300;
+            margin-top: 0;
+        }
+    }
+}
+
+.profile__icon--img {
+    height: 3rem;
+    width: 3rem;
+}

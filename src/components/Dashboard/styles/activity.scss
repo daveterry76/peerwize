@@ -1,0 +1,35 @@
+.activity {
+    background: var(--Primary-00, #F7FCFD);
+    box-shadow: 0px 2px 8px 0px rgba(17, 0, 255, 0.16);
+    border-width: 0.5px;
+    border-radius: 10px;
+    height: fit-content;
+    margin: 1rem;
+    margin-left: 0.8rem;
+    padding: 4rem 1rem;
+    width: 50%;
+    h1 {
+        font-size: 1.4375rem;
+    }
+}
+
+.activity__heading {
+    display: flex;
+    justify-content: space-between;
+    margin-block: 2rem;
+    div {
+        display: flex;
+        gap: 0.7rem;
+        p {
+            color: var(--Accent-Black, #141414);
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: 150%;
+            svg {
+                margin-inline: 0.5rem;
+
+            }
+        }
+    }
+}

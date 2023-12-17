@@ -1,0 +1,102 @@
+.sidebar {
+  background: var(--Primary-Primary06, #2C96A2);
+  height: 100%;
+  padding: 2.375rem;
+  padding-right: 2rem;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  overflow-y: auto;
+}
+.sidebar .sidebar__logo {
+  cursor: pointer;
+  display: flex;
+  margin-bottom: 2.5rem;
+}
+.sidebar .sidebar__logo img {
+  height: 3.75rem;
+  width: 3.6875rem;
+}
+.sidebar .sidebar__logo h3 {
+  color: var(--Primary-Primary01, #EBF8FA);
+  font-family: Roboto;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 150%;
+}
+.sidebar .sidebar__links {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 6rem;
+}
+.sidebar .sidebar__links a {
+  border-radius: 10px;
+  display: flex;
+  gap: 1rem;
+  padding-left: 1.5rem;
+  text-decoration: none;
+}
+.sidebar .sidebar__links .sidebar__icon {
+  width: 1rem;
+}
+.sidebar .sidebar__links p {
+  color: var(--Accent-White, #FFF);
+  font-size: 1rem;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 400;
+  text-decoration: none;
+}
+.sidebar .sidebar__links p:active {
+  border-radius: 4px;
+  background: var(--secondary-secondary-04-main, #FBA04B);
+}
+.sidebar .ad__professional {
+  border-radius: 8px;
+  background: var(--Accent-White, #FFF);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 13rem;
+  margin-bottom: 4rem;
+  padding: 0.75rem 1rem;
+  width: 16.25rem;
+}
+.sidebar .ad__professional svg {
+  background: var(--Primary-Primary06, #2C96A2);
+  border-radius: 100%;
+  padding: 0.5rem;
+}
+.sidebar .ad__professional p {
+  align-self: stretch;
+  color: var(--Accent-Black, #141414);
+  font-family: Roboto;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 150%;
+  text-align: center;
+}
+.sidebar .ad__professional button {
+  border-style: none;
+  border-radius: 4px;
+  background: var(--Primary-Primary06, #2C96A2);
+  cursor: pointer;
+  color: #FFF;
+  padding: 0.5rem 1rem;
+  width: 100%;
+}
+.sidebar .sidebar__logout--btn {
+  border-radius: 4px;
+  background: var(--Primary-Primary01, #EBF8FA);
+  border-style: none;
+  cursor: pointer;
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+  align-items: center;
+  padding: 0.6875rem 1rem;
+  text-align: center;
+  width: 100%;
+}/*# sourceMappingURL=sidebar.css.map */
