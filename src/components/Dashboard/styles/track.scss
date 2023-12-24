@@ -63,6 +63,7 @@
     justify-content: space-between;
     margin-top: 0.5rem;
     padding: 0.5rem;
+    padding-right: 1rem;
     padding-bottom: 0;
     div:nth-child(1) {
         display: flex;
@@ -83,6 +84,7 @@
     border-radius: 8px;
     display: flex;
     justify-content: space-between;
+    padding-right: 1rem;
     div {
         h3 {
             color: var(--Primary-Primary06, #2C96A2);

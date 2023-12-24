@@ -5,11 +5,11 @@ import profilePicture from '../Dashboard/assets/profilePicture.svg'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
-const Navbar = () => {
+const Navbar = ({ props }) => {
   return (
     <>
         <div className='navbar'>
-            <h1>Dashboard</h1>
+            <h1>{props}</h1>
             <ProfileIcon />
         </div>
     </>
