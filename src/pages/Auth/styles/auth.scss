@@ -66,9 +66,11 @@
             font-size: 1rem;
             font-style: normal;
             font-weight: 400;
+            text-decoration: none;
             span {
                 color: #37BBCA;
                 cursor: pointer;
+                margin-left: 0.5rem;
                 &:hover {
                     text-decoration: underline;
                 }
@@ -90,6 +92,7 @@
             padding-inline: 1rem;
             position: relative;
             margin-block: 0.5rem;
+            margin-top: 0;
             // padding: 11px 12px;
             width: 530px;
             &:focus {
@@ -102,11 +105,12 @@
             color: #848484ec;
             display: flex;
             justify-content: center;
-            font-size: 0.9rem;
+            font-size: 1rem;
             width: 100%;
             option {
+                color: #000;
                 font-family: 'Roboto', sans-serif;
-                font-size: 0.9rem;
+                font-size: 1rem;
             }
         }
         div {
@@ -118,6 +122,17 @@
             flex-direction: column;
             align-items: flex-start;
             position: relative;
+
+            h6 {
+                color: var(--grey-grey-04, #848484);
+                display: flex;
+                font-size: 13px;
+                font-style: normal;
+                font-weight: 300;
+                line-height: 150%;
+                margin-block: 0;
+                justify-self: flex-start;
+            }
         }
         // .auth__container--show--password {
 
@@ -128,12 +143,12 @@
             margin-top: 1.8rem;
             position: absolute;
             right: 10px;
-            top: -5px;
+            top: -13px;
             width: 1.5rem;
         }
         .loading {
             position: absolute;
-            bottom: 259.5px;
+            bottom: 265.5px;
             right: 130px;
         }
         
@@ -157,16 +172,7 @@
             font-style: normal;
             font-weight: 400;
             line-height: 150%;
-        }
-
-        h6 {
-            color: var(--grey-grey-04, #848484);
-            font-size: 13px;
-            font-style: normal;
-            font-weight: 300;
-            line-height: 150%;
-            margin: 0 auto 1.5rem; 
-            justify-self: flex-start;
+            margin-top: 1.5rem;
         }
     }
 
@@ -212,10 +218,10 @@
     }
 }
 
-::placeholder {
-    font-family: 'Roboto', sans-serif;
-    font-size: 0.9rem;
-}
+// ::placeholder {
+//     font-family: 'Roboto', sans-serif;
+//     font-size: 0.9rem;
+// }
 
 
 @media screen and (max-width: 481px) {
