@@ -1,0 +1,38 @@
+.stack {
+    background: #FFF;
+    border-radius: 16px;
+    box-shadow: 0px 2px 8px 0px rgba(17, 0, 255, 0.16);
+    margin-inline: 3rem;
+    margin-top: 1rem;
+    padding: 1rem;
+    width: 30%;
+
+
+    .stack__information {
+        border-bottom: 1px solid #CECECE;;
+        h3 {
+            color: var(--Grey-Grey05, #333);
+            font-size: 13px;
+            font-weight: 300;
+            line-height: 150%;
+        }
+        h1 {
+            color: var(--secondary-secondary-04-main, #FBA04B);
+            font-size: 23px;
+            font-weight: 700;
+            line-height: 150%;
+        }
+    }
+
+    .stack__list {
+        display: flex;
+        flex-direction: column;
+        gap: 1px;
+        h4 {
+            font-weight: 400;
+            line-height: 150%;
+            margin-block: 0.5rem;
+        }
+    }
+}
+
