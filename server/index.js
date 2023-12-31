@@ -1,38 +1,76 @@
+// api/socket.js
 
-const server = require("http").createServer();
+const { Server } = require("socket.io");
 
-const io = require("socket.io")(server, {
-  cors: {
-    origin: "*",
-  },
-});
+module.exports = (req, res) => {
+  if (!res.socket.server.io) {
+    console.log("First use, starting socket.io");
 
-const PORT = 4000;
-const NEW_CHAT_MESSAGE_EVENT = "newChatMessage";
+    const httpServer = res.socket.server;
+    const io = new Server(httpServer, {
+      cors: {
+        origin: "*",
+      },
+    });
 
-io.on("connection", (socket) => {
-  console.log(`Socket id is ${socket.id} AND IS CONNECTED!`);
+    io.on("connection", (socket) => {
+      console.log(`Socket id is ${socket.id} AND IS CONNECTED!`);
+
+      const { roomId } = socket.handshake.query;
+      socket.join(roomId);
+
+      socket.on("newChatMessage", (data) => {
+        io.in(roomId).emit("newChatMessage", data);
+      });
+
+      socket.on("disconnect", () => {
+        console.log(`Client ${socket.id} has disconnected`);
+        socket.leave(roomId);
+      });
+    });
+
+    res.socket.server.io = io;
+  }
+
+  return res.socket.server.io;
+};
 
 
-  // Join a community using id
 
-  const { roomId } = socket.handshake.query;
-  socket.join(roomId);
+// const server = require("http").createServer();
+
+// const io = require("socket.io")(server, {
+//   cors: {
+//     origin: "*",
+//   },
+// });
+
+// const PORT = 4000;
+// const NEW_CHAT_MESSAGE_EVENT = "newChatMessage";
+
+// io.on("connection", (socket) => {
+//   console.log(`Socket id is ${socket.id} AND IS CONNECTED!`);
 
 
-  // Listen for new messages
+//   // Join a community using id
 
-  socket.on(NEW_CHAT_MESSAGE_EVENT, (data) => {
-    io.in(roomId).emit(NEW_CHAT_MESSAGE_EVENT, data);
-  })
+//   const { roomId } = socket.handshake.query;
+//   socket.join(roomId);
 
-  socket.on("disconnect", () => {
-    console.log(`Client ${socket.id} has disconnected`);
-    socket.leave(roomId);
-  })
 
-});
+//   // Listen for new messages
 
-server.listen(PORT, () => {
-    console.log("Server started on port 4000")
-})
+//   socket.on(NEW_CHAT_MESSAGE_EVENT, (data) => {
+//     io.in(roomId).emit(NEW_CHAT_MESSAGE_EVENT, data);
+//   })
+
+//   socket.on("disconnect", () => {
+//     console.log(`Client ${socket.id} has disconnected`);
+//     socket.leave(roomId);
+//   })
+
+// });
+
+// server.listen(PORT, () => {
+//     console.log("Server started on port 4000")
+// })

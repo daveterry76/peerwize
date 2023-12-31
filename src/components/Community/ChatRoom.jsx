@@ -106,6 +106,7 @@ const ChatRoom = () => {
                 justifyContent: "center",
                 alignItems: "center",
                 marginBlock: "100px",
+                marginInline: "20px",
               }}
             >
               No message for now! Type in the message field to send a message.
