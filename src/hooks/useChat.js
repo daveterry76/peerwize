@@ -4,7 +4,7 @@ import socketIOClient from "socket.io-client";
 import { AuthContext } from "../contexts/AuthContextProvider";
 
 const NEW_CHAT_MESSAGE_EVENT = "newChatMessage";
-const SOCKET_SERVER_URL = "https://peerwize.vercel.app";
+const SOCKET_SERVER_URL = "http://localhost:4000";
 
 const useChat = (roomId) => {
   //   const { firstName, lastName } = useContext(AuthContext);
@@ -19,7 +19,7 @@ const useChat = (roomId) => {
   const socketRef = useRef();
 
   useEffect(() => {
-    // localStorage.removeItem("chatMessages");
+    localStorage.removeItem("chatMessages");
     // Connect to the Socket.io Server
     socketRef.current = socketIOClient(SOCKET_SERVER_URL, {
       query: { roomId },
