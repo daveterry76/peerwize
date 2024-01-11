@@ -3,7 +3,8 @@ const server = require("http").createServer();
 
 const io = require("socket.io")(server, {
   cors: {
-    origin: "https://peerwize.vercel.app/",
+    origin: "*"
+    // origin: "https://peerwize.vercel.app",
   },
 });
 

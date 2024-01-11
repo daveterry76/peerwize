@@ -13,9 +13,13 @@
     align-items: center;
     width: 45%;
 
+    .logo {
+        height: 180px;
+        width: 159.545px;
+    }
     h6 {
         color: var(--secondary-secondary-04-main, #FBA04B);
-        font-size: 23px;
+        font-size: 20px;
         font-style: normal;
         font-weight: 700;
         line-height: 150%;
@@ -28,10 +32,6 @@
         display: none;
     }
 }
-
-// .logo {
-
-// }
 
 .auth__container {
     display: flex;

@@ -7,6 +7,7 @@ import SignUp from './pages/Auth/SignUp';
 import Dashboard from './pages/Dashboard';
 import Community from './pages/Dashboard/Community';
 import Profile from './pages/Dashboard/Profile';
+import ResourceLibrary, { Resources, SavedCourses } from './pages/Dashboard/Resources';
 import './styles/main.scss'
 
 function App() {
@@ -22,6 +23,10 @@ function App() {
         <Route path='/profile' element={<Profile />} />
         <Route path='/community' element={<Community />}>
           <Route exact path=':roomId' element={<ChatRoom />} />
+        </Route>
+        <Route path='/resourceLibrary' element={<ResourceLibrary />}>
+          <Route exact path='/resourceLibrary/resource' element={<Resources />} />
+          <Route exact path='/resourceLibrary/saved' element={<SavedCourses />} />
         </Route>
       </Routes>
     </div>

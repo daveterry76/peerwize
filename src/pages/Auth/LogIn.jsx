@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthContextProvider";
 // import logo from '../Auth/logo.svg'
-import logo from "../Auth/assets/logo.png";
+import logo from "../Auth/assets/logo.svg";
 import "../Auth/styles/auth.scss";
 
 const LogIn = () => {

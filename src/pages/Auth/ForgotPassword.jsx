@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import "../Auth/styles/auth.scss";
-import logo from "../Auth/assets/logo.png";
+import logo from "../Auth/assets/logo.svg";
 import loading from "../Auth/assets/loading.svg";
 import error from "../Auth/assets/error.svg";
 import success from "../Auth/assets/success.svg";

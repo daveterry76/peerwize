@@ -34,11 +34,15 @@ $secondary-bg-color: #FBA04B;
         // overflow: hidden;
         // position: relative;
         a {
+            background-color: $primary-bg-color;
             border-radius: 10px;
             display: flex;
             gap: 1rem;
             padding-left: 1.5rem;
             text-decoration: none;
+            &.active {
+                background-color: #FBA04B;
+            }
         }
         .sidebar__icon {
             margin-top: 1rem;
@@ -51,10 +55,6 @@ $secondary-bg-color: #FBA04B;
             font-style: normal;
             font-weight: 400;
             text-decoration: none;
-            &:active {
-                border-radius: 4px;
-                background: var(--secondary-secondary-04-main, $secondary-bg-color);
-            }
         }
     }
 
