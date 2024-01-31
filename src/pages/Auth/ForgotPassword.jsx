@@ -5,41 +5,45 @@ import loading from "../Auth/assets/loading.svg";
 import error from "../Auth/assets/error.svg";
 import success from "../Auth/assets/success.svg";
 import { AuthContext } from "../../contexts/AuthContextProvider";
+import { sendPasswordResetEmail } from "firebase/auth";
+import { auth } from "../../Firebase/firebase";
+import { useNavigate } from "react-router-dom";
+
 
 const ForgotPassword = () => {
   const [isLoading, setIsLoading] = useState(false);
-  const [isEmailValid, setIsEmailValid] = useState(false);
-  const [success, setSuccess] = useState("");
-  const [error, setError] = useState("");
+  const [successMessage, setSuccessMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
 
   const { email, setEmail } = useContext(AuthContext);
+  const navigate = useNavigate(); // Using useNavigate hook for navigation
 
-  const handleResetEmail = (e) => {
-    // Rewrite the code here to check if a user's email exists
-    // on Firebase, then use the success and error states
-    // to show that
-
-    setSuccess("");
-    setError("");
+  const handleResetEmail = async (e) => {
     e.preventDefault();
     setIsLoading(true);
-    if (email === "dave@gmail.com") {
-      setSuccess(
-        "A password resent link has been sent to your mail box. Kindly open your email to reset password"
+
+    try {
+      await sendPasswordResetEmail(auth, email);
+      setSuccessMessage(
+        "A password reset link has been sent to your email. Please check your inbox to reset the password."
       );
-      setTimeout(() => setIsLoading(false), 2000);
       setEmail("");
-    } else {
-      setError("No user found. Please input a registered email address");
-      setTimeout(() => setIsLoading(false), 2000);
-      setIsEmailValid(false);
+    } catch (error) {
+      setErrorMessage("No user found. Please input a registered email address.");
     }
+
+    setIsLoading(false);
   };
 
+  // Effect to navigate to login page after displaying success message
   useEffect(() => {
-    document.title = "Forgot Password";
-    setEmail("dave@gmail.com");
-  }, []);
+    if (successMessage !== "") {
+      const timeout = setTimeout(() => {
+        navigate("/"); // Navigating to login page after displaying success message
+      }, 3000); // Adjust the time (in milliseconds) as needed
+      return () => clearTimeout(timeout);
+    }
+  }, [successMessage, navigate]);
 
   return (
     <>
@@ -60,17 +64,14 @@ const ForgotPassword = () => {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
-            {isLoading ? (
-              <img className="loading" src={loading} alt="loading" />
-            ) : null}
-            {/* {isEmailValid && !isLoading ? <img className='success' src={success} alt='success' /> : <img className='error' src={error} alt='error' />} */}
-            <p className="error">{error}</p>
-            <p className="success">{success}</p>
+            {isLoading && <img className="loading" src={loading} alt="loading" />}
+            <p className="error">{errorMessage}</p>
+            <p className="success">{successMessage}</p>
             <button
               onClick={handleResetEmail}
               className="reset__password--btn"
               type="submit"
-              disabled={!email ? true : false}
+              disabled={!email}
             >
               Reset
             </button>
