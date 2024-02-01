@@ -41,6 +41,9 @@
     padding-block: 2rem;
     padding-inline: 4rem;
     width: 55%;
+    & > img:first-of-type {
+        display: none;
+    }
     h1 {
         color: #141414;
         font-size: 28px;
@@ -226,11 +229,17 @@
 
 @media screen and (max-width: 481px) {
     .auth__container {
-        align-items: flex-start;
+        align-items: center;
         padding-top: 4rem;
         padding-inline: 3rem;
         text-align: center;
         width: 100%;
+        & > img:first-of-type {
+            display: block;
+            height: 81px;
+            margin-bottom: 2rem;
+            width: 72px;
+        }
         h3 {
             text-align: left;
         }
@@ -248,7 +257,7 @@
         }
         .auth__container--form {
             input {
-                width: 250px;
+                width: 260px;
             }
             p {
                 display: flex;

@@ -28,6 +28,7 @@ const LogIn = () => {
         <h6>connecting skills, creating futures...</h6>
       </div>
       <div className="auth__container">
+        <img className="logo" src={logo} alt="peerwize logo" />
         <h1>
           Login to <span>Peerwize</span>
         </h1>
