@@ -1,53 +1,25 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthContextProvider";
 // import logo from '../Auth/logo.svg'
 import logo from "../Auth/assets/logo.svg";
 import "../Auth/styles/auth.scss";
-import { auth } from "../../Firebase/firebase";
-import { signInWithEmailAndPassword } from "firebase/auth";
-
 
 const LogIn = () => {
   const { email, setEmail, password, setPassword } = useContext(AuthContext);
   const [showPassword, setShowPassword] = useState(false);
-  const navigate = useNavigate(); // Fixed the variable name
 
   const handleShowPassword = () => {
     setShowPassword(!showPassword);
   };
 
-  const handleLogin = (e) => {
-    e.preventDefault();
-
-    signInWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        const user = userCredential.user;
-        alert("Welcome to Peerwize");
-        navigate("/dashboard", { user }); // Pass user information to the dashboard
-      })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-
-        // Display specific error messages based on Firebase error codes
-        if (errorCode === "auth/user-not-found") {
-          alert("User not found. Please check your email or register.");
-        } else if (errorCode === "auth/wrong-password") {
-          alert("Incorrect password. Please try again.");
-        } else {
-          alert(errorMessage); // Display a general error message
-        }
-      });
+  const handleLogin = () => {
+    // Integrate the firebase login feature
   };
 
   useEffect(() => {
     document.title = "Login to Peerwize";
-  }, []); // Ensure this effect runs only once upon component mount
-
-  // useEffect(() => {
-  //   document.title = "Login to Peerwize";
-  // });
+  });
 
   return (
     <>
@@ -75,14 +47,14 @@ const LogIn = () => {
             <input
               type="email"
               placeholder="Email/Phone number"
-              // value={email}
+              value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
             <div>
               <input
                 type={showPassword ? "text" : "password"}
                 placeholder="Password"
-                // value={password}
+                value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
               {showPassword ? (

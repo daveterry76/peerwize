@@ -1,45 +1,29 @@
-import React, { useState, useContext, useEffect } from "react";
+import React from "react";
+import { useState } from "react";
+import { useContext } from "react";
 import { AuthContext } from "../../contexts/AuthContextProvider";
 import { EditIcon } from "./assets/Icons";
 import "./styles/info.scss";
-import { useId } from "react";
-import { auth, storage } from "../../Firebase/firebase";
-import { ref, getDownloadURL, uploadBytesResumable } from "firebase/storage";
-
-import { db } from "../../Firebase/firebase";
-
 
 const PersonalInfo = () => {
-  // Retrieve personal information from localStorage, or use default values if not available
-  const [firstName, setFirstName] = useState(localStorage.getItem("firstName") || "");
-  const [lastName, setLastName] = useState(localStorage.getItem("lastName") || "");
-  const [email, setEmail] = useState(localStorage.getItem("email") || "");
-  const [phoneNumber, setPhoneNumber] = useState(localStorage.getItem("phoneNumber") || "");
-  const [date, setDate] = useState(localStorage.getItem("date") || "");
-  const [myStack, setMyStack] = useState(localStorage.getItem("myStack") || "");
+  let { firstName, setFirstName, lastName, setLastName } =
+    useContext(AuthContext);
+
+  const [email, setEmail] = useState("simfubara@yahoo.com");
+  const [phoneNumber, setPhoneNumber] = useState("+234 803 875 5560");
+  const [stack, setStack] = useState("UI/UX");
+
+  const initialized = true;
   const [showEdit, setShowEdit] = useState(false);
 
-  useEffect(() => {
-    // Save personal information to localStorage whenever it changes
-    localStorage.setItem("firstName", firstName);
-    localStorage.setItem("lastName", lastName);
-    localStorage.setItem("email", email);
-    localStorage.setItem("phoneNumber", phoneNumber);
-    localStorage.setItem("date", date);
-    localStorage.setItem("myStack", myStack);
-
-  }, [firstName, lastName, email, phoneNumber, date, myStack]);
+  if (initialized) {
+    setFirstName("Sim");
+    setLastName("Fubara");
+  }
 
   const handleEdit = () => {
     setShowEdit(!showEdit);
   };
-
-  const handleSave = () => {
-    // Save the new personal information
-    console.log("Personal information saved:", { firstName, lastName, email, phoneNumber, date, myStack });
-    setShowEdit(false);
-  };
-  
 
   return (
     <>
@@ -53,19 +37,17 @@ const PersonalInfo = () => {
             <div>
               <label>First Name</label>
               <input
-                value={firstName}
+                value={initialized && firstName}
                 onChange={(e) => setFirstName(e.target.value)}
                 readOnly={!showEdit}
-                style={{ border: showEdit ? "1px solid gray" : "none" }}
               />
             </div>
             <div>
               <label>Last Name</label>
               <input
-                value={lastName}
+                value={initialized && lastName}
                 onChange={(e) => setLastName(e.target.value)}
-                readOnly={!showEdit}
-                style={{ border: showEdit ? "1px solid gray" : "none" }}
+                readOnly
               />
             </div>
           </div>
@@ -75,8 +57,7 @@ const PersonalInfo = () => {
               <input
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                readOnly={!showEdit}
-                style={{ border: showEdit ? "1px solid gray" : "none" }}
+                readOnly
               />
             </div>
             <div>
@@ -84,8 +65,7 @@ const PersonalInfo = () => {
               <input
                 value={phoneNumber}
                 onChange={(e) => setPhoneNumber(e.target.value)}
-                readOnly={!showEdit}
-                style={{ border: showEdit ? "1px solid gray" : "none" }}
+                readOnly
               />
             </div>
           </div>
@@ -94,8 +74,6 @@ const PersonalInfo = () => {
               <label>Date of Birth</label>
               <input
                 type="date"
-                value={date}
-                onChange={(e) => setDate(e.target.value)}
                 readOnly={!showEdit}
                 style={{ border: showEdit ? "1px solid gray" : "none" }}
               />
@@ -103,19 +81,14 @@ const PersonalInfo = () => {
             <div>
               <label>My Stack</label>
               <input
-                value={myStack}
-                onChange={(e) => setMyStack(e.target.value)}
+                value={stack}
+                onChange={(e) => setStack(e.target.value)}
                 readOnly={!showEdit}
                 style={{ border: showEdit ? "1px solid gray" : "none" }}
               />
             </div>
           </div>
         </div>
-        {showEdit && (
-          <button className="save-button" onClick={handleSave}>
-            Save
-          </button>
-        )}
       </div>
     </>
   );

@@ -1,106 +1,74 @@
 import React, { useRef } from "react";
 import { useState, useEffect, useContext } from "react";
 import Select from "react-dropdown-select";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import logo from "../Auth/assets/logo.svg";
 import { AuthContext } from "../../contexts/AuthContextProvider";
-import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
-import { auth } from "../../Firebase/firebase";
 
 const SignUp = () => {
-  const [formData, setFormData] = useState({
-    firstName: "",
-    lastName: "",
-    email: "",
-    password: "",
-    confirmPassword: "",
-    phoneNumber: "",
-    country: "",
-    state: "",
-  });
+  const {
+    email,
+    setEmail,
+    password,
+    setPassword,
+    firstName,
+    setFirstName,
+    lastName,
+    setLastName,
+    phoneNumber,
+    setPhoneNumber,
+    createPassword,
+    setCreatePassword,
+    confirmPassword,
+    setConfirmPassword,
+  } = useContext(AuthContext);
 
-  const navigate = useNavigate();
-  const [error, setError] = useState("");
   const [showCreatePassword, setShowCreatePassword] = useState(false);
-
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
+  const selectCountryRef = useRef();
+  const selectCityRef = useRef();
 
   const handleShowCreatePassword = () => {
     setShowCreatePassword(!showCreatePassword);
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const { firstName, lastName, email, password, confirmPassword, phoneNumber, country, state } = formData;
-  
-    if (password !== confirmPassword) {
-      setError("Passwords do not match");
-      return;
-    }
-  
-    try {
-      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-  
-      await updateProfile(userCredential.user, {
-        displayName: `${firstName} ${lastName}`,
-        phoneNumber: phoneNumber,
-        country: country,
-        state: state,
-      });
-  
-      setFormData({
-        firstName: "",
-        lastName: "",
-        email: "",
-        password: "",
-        confirmPassword: "",
-        phoneNumber: "",
-        country: "",
-        state: "",
-      });
-  
-      setError(""); // Clear any previous errors
-      alert("User created successfully!");
-  
-      // Pass user information to the dashboard
-      const user = {
-        firstName,
-        lastName,
-        email,
-        phoneNumber,
-        stack: "Ui/UX", // Set user's default stack or retrieve it from form data
-      };
-      navigate("/", { user });
-    } catch (error) {
-      const errorCode = error.code;
-  
-      switch (errorCode) {
-        case "auth/email-already-in-use":
-          setError("User already exists. Please use a different email.");
-          alert("User already exists. Please use a different email.");
-          break;
-        case "auth/weak-password":
-          setError("Password is not strong enough. Please use a stronger password.");
-          alert("Password is not strong enough. Please use a stronger password.");
-          break;
-        case "auth/invalid-email":
-          setError("Invalid email format. Please enter a valid email.");
-          alert("Invalid email format. Please enter a valid email.");
-          break;
-             case "auth/invalid-email":
-        setError("Invalid email format. Please enter a valid email.");
-        alert("Invalid email format. Please enter a valid email.");
-        break;
-        default:
-          setError(error.message);
-          alert(error.message);
-          break;
-      }
-    }
+  const handleSignUp = () => {
+    // Integrate the firebase signup feature
   };
-  
+
+  const countryValues = [
+    {
+      value: 1,
+      label: "Ghana",
+    },
+    {
+      value: 2,
+      label: "Nigeria",
+    },
+    {
+      value: 3,
+      label: "South Africa",
+    },
+  ];
+
+  const cityValues = [
+    {
+      value: 1,
+      label: "Abuja",
+    },
+    {
+      value: 2,
+      label: "Lagos",
+    },
+    {
+      value: 3,
+      label: "Port Harcourt",
+    },
+  ];
+
+  useEffect(() => {
+    document.title = "Sign Up on Peerwize";
+  });
+
   return (
     <>
       <div className="logo__container" style={{ height: "790px" }}>
@@ -122,55 +90,75 @@ const SignUp = () => {
           <hr />
         </div>
         <div className="auth__container--form">
-          
-          <form onSubmit={handleSubmit}>
-          <input
-           type="email" name="email" 
-           placeholder="Email" 
-           value={formData.email}
-            onChange={handleChange} required
-             />
-            <input type="text" name="firstName"
-             placeholder="First Name"
-              value={formData.firstName} 
-              onChange={handleChange} required 
-              />
-            <input type="text" 
-            name="lastName" placeholder="Last Name"
-             value={formData.lastName} 
-             onChange={handleChange} required 
-             />
-                <input type="text" 
-            name="country" placeholder="Country" 
-            value={formData.country} onChange={handleChange} required
-             />
-            <input type="text"
-             name="state" placeholder="State" 
-             value={formData.state} onChange={handleChange} required 
-             />
-  <input type="tel"
-             name="phoneNumber" placeholder="Phone Number"
-              value={formData.phoneNumber} 
-              onChange={handleChange} required
+          <form>
+            <input
+              type="email"
+              placeholder="Email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+            <input
+              type="text"
+              placeholder="First name"
+              value={firstName}
+              onChange={(e) => setFirstName(e.target.value)}
+            />
+            <input
+              type="text"
+              placeholder="Last name"
+              value={lastName}
+              onChange={(e) => setLastName(e.target.value)}
+            />
+            <select
+              onChange={() => (selectCountryRef.current.style.color = "black")}
+              ref={selectCountryRef}
+              aria-label="label for country select"
+              title="select"
+            >
+              <option disabled selected>
+                Country
+              </option>
+              {countryValues.map((country) => (
+                <option>{country.label}</option>
+              ))}
+            </select>
+            <select
+              onChange={() => (selectCityRef.current.style.color = "black")}
+              ref={selectCityRef}
+              aria-label="label for city select"
+              title="select"
+            >
+              <option disabled selected>
+                City
+              </option>
+              {cityValues.map((city) => (
+                <option>{city.label}</option>
+              ))}
+            </select>
+            <input
+              type="text"
+              placeholder="Phone number"
+              value={phoneNumber}
+              onChange={(e) => setPhoneNumber(e.target.value)}
               maxLength={11}
-               />
-
-<div className="auth__container--password">
-            <input type={showCreatePassword ? 
-              "text" : "password"} name="password" 
-              placeholder="Password"
-               value={formData.password}
-                onChange={handleChange} required 
+            />
+            <div className="auth__container--password">
+              <input
+                type={showCreatePassword ? "text" : "password"}
+                placeholder="Create Password"
+                value={createPassword}
+                onChange={(e) => setCreatePassword(e.target.value)}
                 minLength={8}
-                />
-                  <h6>Minimum 8 characters including a number</h6>
-            <input type={showCreatePassword ? 
-              "text" : "password"} name="confirmPassword" 
-              placeholder="Confirm Password"
-               value={formData.confirmPassword} onChange={handleChange} required 
-              minLength={8}
-               />
-           {showCreatePassword ? (
+              />
+              <h6>Minimum 8 characters including a number</h6>
+              <input
+                type={showCreatePassword ? "text" : "password"}
+                placeholder="Confirm Password"
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+                minLength={8}
+              />
+              {showCreatePassword ? (
                 <svg
                   onClick={handleShowCreatePassword}
                   xmlns="http://www.w3.org/2000/svg"
@@ -209,13 +197,18 @@ const SignUp = () => {
                 </svg>
               )}
             </div>
-            <button className="auth__container--btn" type="submit">
+            <button
+              className="auth__container--btn"
+              type="submit"
+              onClick={handleSignUp}
+            >
               Sign Up
             </button>
           </form>
         </div>
         <h5>
-          By continuing, you agree to our <span>Terms of service</span> and <span>Privacy policy</span>
+          By continuing, you agree to our <span>Terms of service</span> and{" "}
+          <span>Privacy policy</span>
         </h5>
       </div>
     </>
