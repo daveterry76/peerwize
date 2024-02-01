@@ -1,19 +1,34 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { EditIcon } from "./assets/Icons";
+import { useId } from "react";
+import { auth, storage } from "../../Firebase/firebase";
+import { ref, getDownloadURL, uploadBytesResumable } from "firebase/storage";
 
 const Location = () => {
-  const [country, setCountry] = useState("Nigeria");
-  const [state, setState] = useState("Rivers");
-  const [city, setCity] = useState("Port Harcourt");
-  const [houseAddress, setHouseAddress] = useState(
-    "#14 Government house, Old Gra. |"
-  );
+  // Retrieve location information from localStorage, or use default values if not available
+  const [country, setCountry] = useState(localStorage.getItem("country") || "");
+  const [state, setState] = useState(localStorage.getItem("state") || "");
+  const [city, setCity] = useState(localStorage.getItem("city") || "");
+  const [houseAddress, setHouseAddress] = useState(localStorage.getItem("houseAddress") || "");
 
   const [showEdit, setShowEdit] = useState(false);
 
+  useEffect(() => {
+    // Save location information to localStorage whenever it changes
+    localStorage.setItem("country", country);
+    localStorage.setItem("state", state);
+    localStorage.setItem("city", city);
+    localStorage.setItem("houseAddress", houseAddress);
+  }, [country, state, city, houseAddress]);
+
   const handleEdit = () => {
     setShowEdit(!showEdit);
+  };
+
+  const handleSave = () => {
+    // Save the new user location information
+    alert("Location information saved:", { country, state, city, houseAddress });
+    setShowEdit(false);
   };
 
   return (
@@ -50,7 +65,8 @@ const Location = () => {
               <input
                 value={city}
                 onChange={(e) => setCity(e.target.value)}
-                readOnly
+                readOnly={!showEdit}
+                style={{ border: showEdit ? "1px solid gray" : "none" }}
               />
             </div>
             <div>
@@ -58,11 +74,17 @@ const Location = () => {
               <input
                 value={houseAddress}
                 onChange={(e) => setHouseAddress(e.target.value)}
-                readOnly
+                readOnly={!showEdit}
+                style={{ border: showEdit ? "1px solid gray" : "none" }}
               />
             </div>
           </div>
         </div>
+        {showEdit && (
+          <button className="save-button" onClick={handleSave}>
+            Save
+          </button>
+        )}
       </div>
     </>
   );
