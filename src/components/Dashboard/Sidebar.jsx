@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useContext, useEffect } from "react";
 import "./styles/sidebar.scss";
 import logo from "../../pages/Auth/assets/logo.svg";
 import { Link, useLocation } from "react-router-dom";
@@ -10,6 +10,8 @@ import webinarIcon from "../Dashboard/assets/webinarIcon.svg";
 import settingsIcon from "../Dashboard/assets/settingsIcon.svg";
 import arrowIcon from "../Dashboard/assets/arrow.svg";
 import logoutIcon from "../Dashboard/assets/logoutIcon.svg";
+import { MainContext } from "../../contexts/MainContextProvider";
+import { CancelIcon, LogoutIcon } from "../../assets/icons/Icons";
 
 const sidebarItems = [
   {
@@ -74,6 +76,7 @@ const sidebarItems = [
 
 const Sidebar = () => {
   const location = useLocation();
+  const { showSidebar, setShowSideBar, isMobile, setIsMobile } = useContext(MainContext);
 
   const getActiveClass = (item) => {
     return location.pathname === item.link ? "active" : "";
@@ -81,98 +84,114 @@ const Sidebar = () => {
 
   return (
     <>
-      <div className="sidebar">
-        <div className="sidebar__logo">
-          <img src={logo} alt="logo" />
-          <h3>Peerwize</h3>
-        </div>
-        <div className="sidebar__links">
-          {sidebarItems.map((item, id) => (
-            <>
-              <Link
-                key={id}
-                className={`sidebar__link ${getActiveClass(item)}`}
-                style={{
-                  backgroundColor: `${
-                    item.link === "/resource" ? "#2C96A2" : getActiveClass(item)
-                  }`,
-                }}
-                to={item.link}
-                // onClick={() => handleNavigate(id)}
-              >
-                <svg
-                  className="sidebar__icon"
-                  width="20"
-                  height="20"
-                  viewBox="0 0 24 24"
-                  fill={getActiveClass(item) ? "#FFFFFF" : "#CECECE"}
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  {item.iconPath.map((path, pathId) => (
-                    <path
-                      key={pathId}
-                      d={path}
-                      stroke="white"
-                      stroke-width="1.5"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    />
-                  ))}
-                </svg>
-                <p
+      {/* {showSidebar ? ( */}
+        <div className="sidebar">
+          <div className="sidebar__logo">
+            <img src={logo} alt="logo" />
+            <h3>Peerwize</h3>
+            <CancelIcon onClick={() => setShowSideBar(false)} />
+          </div>
+          <div className="sidebar__links">
+            {sidebarItems.map((item, id) => (
+              <>
+                <Link
+                  key={id}
+                  className={`sidebar__link ${getActiveClass(item)}`}
                   style={{
-                    color: `${getActiveClass(item) ? "#FFFFFF" : "#CECECE"}`,
-                    fontWeight: `${getActiveClass(item) ? 700 : 400}`,
+                    backgroundColor: `${
+                      item.link === "/resource"
+                        ? "#2C96A2"
+                        : getActiveClass(item)
+                    }`,
                   }}
+                  to={item.link}
+                  onClick={() => setShowSideBar(!showSidebar)}
+                  // onClick={() => handleNavigate(id)}
                 >
-                  {item.name}
-                </p>
-                {item.link === "/resource" ? (
-                  <img
+                  <svg
+                    className="sidebar__icon"
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill={getActiveClass(item) ? "#FFF" : "#FFFFFF"}
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    {item.iconPath.map((path, pathId) => (
+                      <path
+                        key={pathId}
+                        d={path}
+                        stroke={!isMobile ? "#37BBCA" : "#FFF"}
+                        strokeWidth="1.5"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                    ))}
+                  </svg>
+                  <p
                     style={{
-                      height: "20px",
-                      width: "18px",
-                      cursor: "pointer",
-                      marginLeft: "2rem",
-                      marginTop: "1rem",
+                      color: `${
+                        getActiveClass(item)
+                          ? "#FFFFFF"
+                          : !isMobile
+                          ? "#37BBCA"
+                          : "#CECECE"
+                      }`,
+                      fontWeight: `${getActiveClass(item) ? 700 : 400}`,
                     }}
-                    src={arrowIcon}
-                    alt="arrow"
-                  />
+                  >
+                    {item.name}
+                  </p>
+                  {item.link === "/resource" ? (
+                    <img
+                      style={{
+                        height: "20px",
+                        width: "18px",
+                        cursor: "pointer",
+                        marginLeft: "2rem",
+                        marginTop: "1rem",
+                      }}
+                      src={arrowIcon}
+                      alt="arrow"
+                    />
+                  ) : null}
+                </Link>
+                {item.link === "/resourceLibrary" ? (
+                  <div style={{ marginLeft: "5rem" }}>
+                    <Link
+                      to="/resourceLibrary/resource"
+                      style={{
+                        backgroundColor: `${getActiveClass(item)}`,
+                        color: `${
+                          getActiveClass(item) ? "#FFFFFF" : "#CECECE"
+                        }`,
+                        fontWeight: `${getActiveClass(item) ? 700 : 400}`,
+                        marginBlock: "1rem",
+                      }}
+                    >
+                      Resources
+                    </Link>
+                    <Link
+                      to="/resourceLibrary/saved"
+                      style={{
+                        backgroundColor: `${getActiveClass(item)}`,
+                        color: `${
+                          getActiveClass(item) ? "#FFFFFF" : "#CECECE"
+                        }`,
+                        fontWeight: `${getActiveClass(item) ? 700 : 400}`,
+                      }}
+                    >
+                      Saved Courses
+                    </Link>
+                  </div>
                 ) : null}
-              </Link>
-              {item.link === "/resourceLibrary" ? (
-                <div style={{ marginLeft: "5rem" }}>
-                  <Link
-                    to="/resourceLibrary/resource"
-                    style={{
-                      backgroundColor: `${getActiveClass(item)}`,
-                      color: `${getActiveClass(item) ? "#FFFFFF" : "#CECECE"}`,
-                      fontWeight: `${getActiveClass(item) ? 700 : 400}`,
-                      marginBlock: "1rem"
-                    }}
-                  >
-                    Resources
-                  </Link>
-                  <Link
-                    to="/resourceLibrary/saved"
-                    style={{
-                      backgroundColor: `${getActiveClass(item)}`,
-                      color: `${getActiveClass(item) ? "#FFFFFF" : "#CECECE"}`,
-                      fontWeight: `${getActiveClass(item) ? 700 : 400}`,
-                    }}
-                  >
-                    Saved Courses
-                  </Link>
-                </div>
-              ) : null}
-            </>
-          ))}
-        </div>
+              </>
+            ))}
+          </div>
 
-        <AdProfessional />
-        <LogoutBtn />
-      </div>
+          <AdProfessional />
+          <LogoutBtn />
+        </div>
+      {/* ): null} */}
     </>
   );
 };
@@ -209,39 +228,10 @@ export const LogoutBtn = () => {
   return (
     <>
       <button className="sidebar__logout--btn">
-        <svg
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M17.4399 14.62L19.9999 12.06L17.4399 9.5"
-            stroke="#333333"
-            stroke-width="1.5"
-            stroke-miterlimit="10"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          />
-          <path
-            d="M9.75977 12.0601H19.9298"
-            stroke="#333333"
-            stroke-width="1.5"
-            stroke-miterlimit="10"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          />
-          <path
-            d="M11.7598 20C7.33977 20 3.75977 17 3.75977 12C3.75977 7 7.33977 4 11.7598 4"
-            stroke="#333333"
-            stroke-width="1.5"
-            stroke-miterlimit="10"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          />
-        </svg>
-        <p>Logout</p>
+        <span>
+          <LogoutIcon />
+          <p>Logout</p>
+        </span>
       </button>
     </>
   );

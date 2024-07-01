@@ -33,3 +33,10 @@
         }
     }
 }
+
+@media (max-width: 480px) {
+    .activity {
+        padding: 4rem 2rem;
+        width: 75%;
+    }
+}

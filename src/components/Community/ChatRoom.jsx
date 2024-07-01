@@ -43,8 +43,8 @@ const ChatRoom = () => {
   }, [messages]);
 
   return (
-    <>
-      <div className="chatroom">
+    <div className="chatroom">
+      <div className="chat__container">
         <div className="search__container">
           <div>
             <input
@@ -124,13 +124,14 @@ const ChatRoom = () => {
           <SendIcon
             onClick={handleSendMessage}
             className="message__field--btn"
+            disabled={!newMessage.length}
           />
         </div>
       </div>
       <div className="stack">
         <Stack />
       </div>
-    </>
+    </div>
   );
 };
 

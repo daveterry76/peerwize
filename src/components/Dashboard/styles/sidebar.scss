@@ -2,12 +2,11 @@ $primary-bg-color: #2C96A2;
 $secondary-bg-color: #FBA04B;
 
 .sidebar {
-    background: var(--Primary-Primary06, $primary-bg-color);
+    background: $primary-bg-color;
+    // display: block;
     height: 100%;
     padding: 2.375rem;
     padding-right: 2rem;
-    // position: sticky;
-    // top: 0;
     overflow-y: auto;
     .sidebar__logo {
         cursor: pointer;
@@ -25,23 +24,23 @@ $secondary-bg-color: #FBA04B;
             font-weight: 700;
             line-height: 150%;
         }
+        & > svg {
+            display: none;
+        }
     }
     .sidebar__links {
         display: flex;
         flex-direction: column;
-        // flex: 1;
         margin-bottom: 6rem;
-        // overflow: hidden;
-        // position: relative;
         a {
-            background-color: $primary-bg-color;
+            // background-color: $primary-bg-color;
             border-radius: 10px;
             display: flex;
             gap: 1rem;
             padding-left: 1.5rem;
             text-decoration: none;
             &.active {
-                background-color: #FBA04B;
+                background-color: $secondary-bg-color;
             }
         }
         .sidebar__icon {
@@ -49,7 +48,7 @@ $secondary-bg-color: #FBA04B;
             width: 1rem;
         }
         p {
-            color: var(--Accent-White, #FFF);
+            color: #FFF;
             font-size: 1rem;
             font-family: Roboto;
             font-style: normal;
@@ -96,7 +95,7 @@ $secondary-bg-color: #FBA04B;
 
     .sidebar__logout--btn {
         border-radius: 4px;
-        background: var(--Primary-Primary01, #EBF8FA);
+        background: #EBF8FA;
         border-style: none;
         cursor: pointer;
         display: flex;
@@ -106,5 +105,51 @@ $secondary-bg-color: #FBA04B;
         padding: .6875rem 1rem;
         text-align: center;
         width: 100%;
+        & > span {
+            display: flex;
+            gap: 0.5rem;
+            & > svg {
+                margin-top: 0.6rem;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .sidebar {
+        background: #FFF;
+        display: none;
+        width: 100%;
+        .sidebar__logo {
+            justify-content: space-between;
+            & > h3 {
+                display: none;
+            }
+            & > svg {
+                display: block;
+                margin-top: 1rem;
+            }
+        }
+        .sidebar__links {
+            a {
+                background-color: none;
+                color: $primary-bg-color;
+                &.active {
+                    background-color: $primary-bg-color;
+                }
+            }
+        }
+
+        .ad__professional {
+            display: none;
+        }
+        
+        .sidebar__logout--btn {
+            // align-self: flex-start;
+            background: none;
+            display: block;
+            color: #37BBCA;
+            text-align: left;
+        }
     }
 }

@@ -1,21 +1,46 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+
+import { sendPostRequest } from "../../config/swr";
+import useSWRMutation from "swr/mutation";
+
 import { AuthContext } from "../../contexts/AuthContextProvider";
-// import logo from '../Auth/logo.svg'
+
 import logo from "../Auth/assets/logo.svg";
 import "../Auth/styles/auth.scss";
+import { BackArrowIcon, HamburgerIcon } from "../../assets/icons/Icons";
 
 const LogIn = () => {
+  const { trigger, isMutating } = useSWRMutation("/login", sendPostRequest);
+
   const { email, setEmail, password, setPassword } = useContext(AuthContext);
   const [showPassword, setShowPassword] = useState(false);
+  const navigate = useNavigate();
 
   const handleShowPassword = () => {
     setShowPassword(!showPassword);
   };
 
-  const handleLogin = () => {
-    // Integrate the firebase login feature
+  const handleLogin = async (e) => {
+    e.preventDefault();
+
+    const data = {
+      email,
+      password,
+    };
+
+    try {
+      const res = await trigger(data);
+      console.log(res);
+      alert("Login Successful");
+      navigate("/dashboard");
+    } catch (error) {
+      console.error("An error occurred");
+      alert(error?.response?.data?.message || "An error occurred");
+    }
   };
+
+  const btnDisabled = !email || !password;
 
   useEffect(() => {
     document.title = "Login to Peerwize";
@@ -28,29 +53,32 @@ const LogIn = () => {
         <h6>connecting skills, creating futures...</h6>
       </div>
       <div className="auth__container">
+        <Link to="/signup" className="back__btn">
+          <BackArrowIcon />
+        </Link>
         <img className="logo" src={logo} alt="peerwize logo" />
-        <h1>
+        <h1 className="text-center text-xl lg:text-3xl font-bold">
           Login to <span>Peerwize</span>
         </h1>
-        <div>
-          <hr />
+        <div className="flex justify-center items-center gap-4 mt-4 w-full">
+          <hr className="w-1/4" />
           <h3>
-            Don't have an account?
+            Don't have an account?&nbsp;
             <Link style={{ textDecoration: "none" }} to="/signup">
               <span>Sign up</span>
             </Link>
           </h3>
-          <hr />
+          <hr className="w-1/4" />
         </div>
-        <div className="auth__container--form">
-          <form>
+        <div className="auth__container--form my-4">
+          <form onSubmit={handleLogin} className="flex flex-col gap-4">
             <input
               type="email"
               placeholder="Email/Phone number"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
-            <div>
+            <div className="flex justify-center items-center auth__container--password">
               <input
                 type={showPassword ? "text" : "password"}
                 placeholder="Password"
@@ -97,15 +125,16 @@ const LogIn = () => {
               )}
             </div>
             <Link style={{ textDecoration: "none" }} to="/forgot-password">
-              <p>Forgot Password</p>
+              <p className="text-sm hover:underline cursor-pointer">
+                Forgot Password
+              </p>
             </Link>
             <button
               className="auth__container--btn"
               type="submit"
-              placeholder="Login"
-              onClick={handleLogin}
+              disabled={btnDisabled || isMutating}
             >
-              Login
+              {isMutating ? <>Loading...</> : <>Login</>}
             </button>
           </form>
         </div>

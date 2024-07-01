@@ -27,6 +27,7 @@ const ProfileDetails = () => {
             value={bio}
             onChange={(e) => setBio(e.target.value)}
             maxLength={120}
+            style={{ width: "90%" }}
             rows={4}
             cols={55}
           />

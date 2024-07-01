@@ -36,3 +36,9 @@
     }
 }
 
+@media screen and (max-width: 480px) {
+    .stack {
+        display: none;
+        width: 100%;
+    }
+}

@@ -1,0 +1,17 @@
+.feed__desktop {
+    display: block;
+}
+
+.feed__mobile {
+    display: none;
+}
+
+@media (max-width: 481px) {
+    .feed__desktop {
+        display: none;
+    }
+
+    .feed__mobile {
+        display: block;
+    }
+}

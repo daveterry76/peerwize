@@ -1,11 +1,9 @@
 .sidebar {
-  background: var(--Primary-Primary06, #2C96A2);
+  background: #2C96A2;
+  display: block;
   height: 100%;
   padding: 2.375rem;
   padding-right: 2rem;
-  position: -webkit-sticky;
-  position: sticky;
-  top: 0;
   overflow-y: auto;
 }
 .sidebar .sidebar__logo {
@@ -25,6 +23,9 @@
   font-weight: 700;
   line-height: 150%;
 }
+.sidebar .sidebar__logo > svg {
+  display: none;
+}
 .sidebar .sidebar__links {
   display: flex;
   flex-direction: column;
@@ -37,20 +38,20 @@
   padding-left: 1.5rem;
   text-decoration: none;
 }
+.sidebar .sidebar__links a.active {
+  background-color: #FBA04B;
+}
 .sidebar .sidebar__links .sidebar__icon {
+  margin-top: 1rem;
   width: 1rem;
 }
 .sidebar .sidebar__links p {
-  color: var(--Accent-White, #FFF);
+  color: #FFF;
   font-size: 1rem;
   font-family: Roboto;
   font-style: normal;
   font-weight: 400;
   text-decoration: none;
-}
-.sidebar .sidebar__links p:active {
-  border-radius: 4px;
-  background: var(--secondary-secondary-04-main, #FBA04B);
 }
 .sidebar .ad__professional {
   border-radius: 8px;
@@ -89,7 +90,7 @@
 }
 .sidebar .sidebar__logout--btn {
   border-radius: 4px;
-  background: var(--Primary-Primary01, #EBF8FA);
+  background: #EBF8FA;
   border-style: none;
   cursor: pointer;
   display: flex;
@@ -99,4 +100,45 @@
   padding: 0.6875rem 1rem;
   text-align: center;
   width: 100%;
+}
+.sidebar .sidebar__logout--btn > span {
+  display: flex;
+  gap: 0.5rem;
+}
+.sidebar .sidebar__logout--btn > span > svg {
+  margin-top: 0.6rem;
+}
+
+@media screen and (max-width: 480px) {
+  .sidebar {
+    background: #FFF;
+    display: none;
+    width: 100%;
+  }
+  .sidebar .sidebar__logo {
+    justify-content: space-between;
+  }
+  .sidebar .sidebar__logo > h3 {
+    display: none;
+  }
+  .sidebar .sidebar__logo > svg {
+    display: block;
+    margin-top: 1rem;
+  }
+  .sidebar .sidebar__links a {
+    background-color: none;
+    color: #2C96A2;
+  }
+  .sidebar .sidebar__links a.active {
+    background-color: #2C96A2;
+  }
+  .sidebar .ad__professional {
+    display: none;
+  }
+  .sidebar .sidebar__logout--btn {
+    background: none;
+    display: block;
+    color: #37BBCA;
+    text-align: left;
+  }
 }/*# sourceMappingURL=sidebar.css.map */

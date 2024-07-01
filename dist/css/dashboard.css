@@ -3,10 +3,11 @@
   width: 100%;
 }
 
-.dashboard__sidebar {
-  width: 40%;
+.dashboard__main {
+  width: 100%;
 }
 
-.dashboard__main {
-  width: 60%;
+.dashboard__main--first {
+  display: flex;
+  width: 100%;
 }/*# sourceMappingURL=dashboard.css.map */

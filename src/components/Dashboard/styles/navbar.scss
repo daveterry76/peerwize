@@ -3,9 +3,29 @@
     box-shadow: 0px 2px 8px 0px rgba(17, 0, 255, 0.16);
     display: flex;
     justify-content: space-between;
-    padding: 1rem 3rem 0 1rem;
+    align-items: center;
+    padding: 2rem 1rem 0;
+    & > svg {
+        display: none;
+    }
+    & > img:first-of-type {
+        display: none;
+    }
     h1 {
         font-size: 1.4375rem;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .navbar {
+        & > svg,
+        & > img:first-of-type {
+            cursor: pointer;
+            display: block;
+        }
+        h1 {
+            display: none;
+        }
     }
 }
 
@@ -50,4 +70,19 @@
 .profile__icon--img {
     height: 3rem;
     width: 3rem;
+}
+
+@media screen and (max-width: 480px) {
+    .profile__icon--profile {
+        & > div:first-of-type {
+            display: none;
+        }
+    }
+    .profile__icon {
+        gap: 0.5rem;
+    }
+    .profile__icon--notif {
+        height: 1rem;
+        width: 1rem;
+    }
 }

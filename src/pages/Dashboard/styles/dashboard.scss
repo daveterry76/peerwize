@@ -5,9 +5,54 @@
 
 .dashboard__main {
     width: 100%;
+
+    .community__mobile {
+        display: none;
+    }
 }
 
 .dashboard__main--first {
     display: flex;
     width: 100%;
+
+    & > h2:first-of-type {
+        display: none;
+    }
+}
+
+.skills-sm {
+    display: none;
+}
+
+.skills-lg {
+    display: block;
+}
+
+@media (max-width: 480px) {
+    .dashboard {
+        overflow-x: hidden;
+    }
+    .dashboard__main {
+        .community__mobile {
+            display: flex;
+            justify-content: space-between;
+        }
+        h2:first-of-type {
+            color: #848484;
+            font-size: 19px;
+            font-weight: 700;
+            margin: 1rem;
+            margin-bottom: 0;
+        }
+    }
+    .dashboard__main--first {
+        flex-direction: column;
+    }
+    .skills-sm {
+        display: block;
+    }
+    
+    .skills-lg {
+        display: none;
+    }
 }

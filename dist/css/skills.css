@@ -1,0 +1,78 @@
+.skills div {
+  display: flex;
+  gap: 10px;
+}
+.skills div svg {
+  margin-top: 0.5rem;
+}
+.skills p {
+  color: var(--Accent-Black, #141414);
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 300;
+  line-height: 150%;
+  text-align: right;
+}
+.skills .add__skill {
+  background: var(--Accent-White, #FFF);
+  border-radius: 16px;
+  box-shadow: 0px 2px 8px 0px rgba(17, 0, 255, 0.16);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  width: 100%;
+  margin-top: 5rem;
+}
+.skills .add__skill .add__skill-btn {
+  border-radius: 4px;
+  background: var(--primary-primary-05-main, #37BBCA);
+  border: none;
+  color: var(--Accent-White, #FFF);
+  cursor: pointer;
+  font-size: 1rem;
+  line-height: 150%;
+  display: flex;
+  padding: 11px 16px;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  align-self: stretch;
+  width: 100%;
+}
+.skills .add__skill div {
+  flex-direction: column;
+  padding-bottom: 1rem;
+}
+.skills .add__skill div .add__skill-heading {
+  display: flex;
+  border-bottom: none;
+  flex-direction: row;
+  margin-left: 1.2rem;
+}
+.skills .add__skill div .add__skill-heading svg {
+  margin-top: 1.5rem;
+}
+.skills .add__skill div .add__skill-heading h4 {
+  color: var(--secondary-secondary-04-main, #FBA04B);
+  font-size: 19px;
+  font-weight: 700;
+  line-height: 150%;
+}
+.skills .add__skill div .add__skill-search {
+  border-bottom: none;
+}
+.skills .add__skill div .add__skill-search input {
+  border-radius: 8px;
+  background: var(--Grey-Grey01, #F5F5F5);
+  border: 1px solid gray;
+  margin-left: 1.2rem;
+  padding: 12px;
+  width: 85%;
+}
+.skills .add__skill div .add__skill-search svg:nth-child(2) {
+  position: absolute;
+  right: 35px;
+}/*# sourceMappingURL=skills.css.map */
