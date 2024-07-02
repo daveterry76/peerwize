@@ -1,25 +1,15 @@
-import React from "react";
 import { useState } from "react";
-import { useContext } from "react";
-import { AuthContext } from "../../contexts/AuthContextProvider";
+import { getUserInfo } from "../../config/swr";
+
 import { EditIcon } from "./assets/Icons";
 import "./styles/info.scss";
 
 const PersonalInfo = () => {
-  let { firstName, setFirstName, lastName, setLastName } =
-    useContext(AuthContext);
-
-  const [email, setEmail] = useState("simfubara@yahoo.com");
-  const [phoneNumber, setPhoneNumber] = useState("+234 803 875 5560");
+  const user = getUserInfo();
+  const { firstName, lastName, email, phoneNumber, city, country, track } =
+    user?.user;
   const [stack, setStack] = useState("UI/UX");
-
-  const initialized = true;
   const [showEdit, setShowEdit] = useState(false);
-
-  if (initialized) {
-    setFirstName("Sim");
-    setLastName("Fubara");
-  }
 
   const handleEdit = () => {
     setShowEdit(!showEdit);
@@ -36,56 +26,49 @@ const PersonalInfo = () => {
           <div className="info--box">
             <div>
               <label>First Name</label>
-              <input
-                value={initialized && firstName}
-                onChange={(e) => setFirstName(e.target.value)}
-                readOnly={!showEdit}
-              />
+              <input value={firstName} readOnly={!showEdit} />
             </div>
             <div>
               <label>Last Name</label>
-              <input
-                value={initialized && lastName}
-                onChange={(e) => setLastName(e.target.value)}
-                readOnly
-              />
+              <input value={lastName} readOnly />
             </div>
           </div>
           <div className="info--box">
             <div>
               <label>Email Address</label>
-              <input
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                readOnly
-              />
+              <input value={email} readOnly />
             </div>
             <div>
               <label>Phone number</label>
-              <input
-                value={phoneNumber}
-                onChange={(e) => setPhoneNumber(e.target.value)}
-                readOnly
-              />
+              <input value={phoneNumber} readOnly />
             </div>
           </div>
           <div className="info--box">
             <div>
               <label>Date of Birth</label>
-              <input
-                type="date"
-                readOnly={!showEdit}
-                style={{ border: showEdit ? "1px solid gray" : "none" }}
-              />
+              {showEdit ? (
+                <input
+                  type="date"
+                  readOnly={!showEdit}
+                  style={{ border: showEdit ? "1px solid gray" : "none" }}
+                />
+              ) : (
+                <p className="text-sm">No date of birth added</p>
+              )}
             </div>
             <div>
               <label>My Stack</label>
-              <input
-                value={stack}
-                onChange={(e) => setStack(e.target.value)}
-                readOnly={!showEdit}
-                style={{ border: showEdit ? "1px solid gray" : "none" }}
-              />
+              {showEdit ? (
+                <input
+                  value={track.join(", ")}
+                  onChange={(e) => setStack(e.target.value)}
+                  readOnly={!showEdit}
+                  style={{ border: showEdit ? "1px solid gray" : "none" }}
+                  placeholder="Update stack"
+                />
+              ) : (
+                <p className="text-sm">No stack added</p>
+              )}
             </div>
           </div>
         </div>

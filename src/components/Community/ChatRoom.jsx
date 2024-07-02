@@ -1,4 +1,3 @@
-import React from "react";
 import { useState, useEffect, useRef } from "react";
 import useChat from "../../hooks/useChat";
 import { useParams } from "react-router-dom";
@@ -46,7 +45,7 @@ const ChatRoom = () => {
     <div className="chatroom">
       <div className="chat__container">
         <div className="search__container">
-          <div>
+          <div className="flex justify-between items-center">
             <input
               type="search"
               value={search}
@@ -99,16 +98,7 @@ const ChatRoom = () => {
               ))}
             </ol>
           ) : (
-            <div
-              style={{
-                display: "flex",
-                fontSize: "1.5rem",
-                justifyContent: "center",
-                alignItems: "center",
-                marginBlock: "100px",
-                marginInline: "20px",
-              }}
-            >
+            <div className="flex justify-center items-center my-[100px] mx-[20px] text-2xl">
               No message for now! Type in the message field to send a message.
             </div>
           )}
@@ -120,12 +110,13 @@ const ChatRoom = () => {
             placeholder="Type message..."
             rows={Math.max(Math.ceil(newMessage.length / 45), 1)}
           ></textarea>
+          <div className="flex gap-2">
           <AttachmentIcon className="message__field--attachment" />
           <SendIcon
             onClick={handleSendMessage}
             className="message__field--btn"
             disabled={!newMessage.length}
-          />
+          /></div>
         </div>
       </div>
       <div className="stack">

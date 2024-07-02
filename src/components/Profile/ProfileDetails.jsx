@@ -2,10 +2,15 @@ import React from "react";
 import "./styles/profiledetails.scss";
 import changeProfilePicIcon from "../Profile/assets/changeProfilePicIcon.svg";
 import { useState, useId } from "react";
+import { getUserInfo } from "../../config/swr";
 
 const ProfileDetails = () => {
-  const [bio, setBio] = useState("I am a frontend engineer!");
+  const [bio, setBio] = useState("I am a product designer!");
   const textareaId = useId();
+
+  const user = getUserInfo();
+  console.log(user?.user);
+  const { firstName, lastName, email } = user?.user
 
   return (
     <>
@@ -15,8 +20,8 @@ const ProfileDetails = () => {
             <img src={changeProfilePicIcon} alt="change pic" />
           </div>
           <div className="profile__data">
-            <h1>Sim Fubara</h1>
-            <h4>Simfubara@yahoo.com</h4>
+            <h1>{firstName} {lastName}</h1>
+            <h4>{email}</h4>
           </div>
         </div>
         <div className="profile__details--bio">

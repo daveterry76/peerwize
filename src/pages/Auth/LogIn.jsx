@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
-import { sendPostRequest } from "../../config/swr";
+import { sendPostRequest, setToken, setUserInfo } from "../../config/swr";
 import useSWRMutation from "swr/mutation";
 
 import { AuthContext } from "../../contexts/AuthContextProvider";
@@ -31,8 +31,10 @@ const LogIn = () => {
 
     try {
       const res = await trigger(data);
-      console.log(res);
-      alert("Login Successful");
+      console.log(res.data.token, res.data.user);
+      setToken(res.data?.token);
+      setUserInfo(res.data);
+      alert(res.data?.message || "Login Successful");
       navigate("/dashboard");
     } catch (error) {
       console.error("An error occurred");
@@ -62,7 +64,7 @@ const LogIn = () => {
         </h1>
         <div className="flex justify-center items-center gap-4 mt-4 w-full">
           <hr className="w-1/4" />
-          <h3>
+          <h3 className="text-xs">
             Don't have an account?&nbsp;
             <Link style={{ textDecoration: "none" }} to="/signup">
               <span>Sign up</span>

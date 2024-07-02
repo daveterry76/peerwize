@@ -155,23 +155,22 @@
     }
 
     .message__field {
+        border: 26px solid #37BBCA;
+        border-radius: 16px;
+        height: fit-content;
         display: flex;
+        justify-content: space-between;
+        padding: 0.5rem 1rem;
         position: relative;
 
         textarea {
-            border: 26px solid #37BBCA;
-            border-radius: 16px;
             font-family: Roboto;
             font-size: 1rem;
             height: 30px;
-            margin-inline: 2rem;
-            padding: 0.9rem 0 0.4rem 2.5rem;
             position: sticky;
             resize: none;
-            transition: height 0.3s;
             overflow: hidden;
-            line-height: 1.2;
-            width: calc(100% - 6rem);
+            width: 100%;
 
             &::placeholder {
                 font-family: Roboto;
@@ -184,16 +183,10 @@
 
         .message__field--btn {
             cursor: pointer;
-            position: absolute;
-            right: 70px;
-            top: 40px;
         }
 
         .message__field--attachment {
             cursor: pointer;
-            position: absolute;
-            left: 70px;
-            top: 40px;
         }
     }
 

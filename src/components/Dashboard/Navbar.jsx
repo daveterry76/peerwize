@@ -1,29 +1,20 @@
-import React from "react";
-import "./styles/navbar.scss";
+import { useNavigate } from "react-router-dom";
+
 import notifIcon from "../Dashboard/assets/notificationIcon.svg";
 import profilePicture from "../Dashboard/assets/profilePicture.svg";
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { HamburgerIcon } from "../../assets/icons/Icons";
 import logo from "../../pages/Auth/assets/logo.svg";
-import { useContext } from "react";
-import { MainContext } from "../../contexts/MainContextProvider";
-import { Sidebar } from "flowbite-react";
 
-const Navbar = ({ props }) => {
-  const { showSidebar, setShowSideBar, isMobile, setIsMobile } = useContext(MainContext);
+import "./styles/navbar.scss";
+import { getUserInfo } from "../../config/swr";
 
-  const handleShowSidebar = () => {
-    setShowSideBar(true);
-    console.log(showSidebar);
-  };
-
+const Navbar = ({ props, onHamburgerClick }) => {
   return (
     <>
       <div className="navbar">
-        <HamburgerIcon onClick={() => setIsMobile(!isMobile)} />
+        <HamburgerIcon onClick={onHamburgerClick} />
         <img src={logo} alt="logo" />
-        <h1>{props}</h1>
+        <h1 className="font-semibold">{props}</h1>
         <ProfileIcon />
       </div>
     </>
@@ -33,7 +24,9 @@ const Navbar = ({ props }) => {
 export default Navbar;
 
 export const ProfileIcon = () => {
-  const [user, setUser] = useState(false);
+  const user = getUserInfo();
+  const { firstName, lastName } = user?.user;
+
   const navigate = useNavigate();
   return (
     <>
@@ -50,12 +43,12 @@ export const ProfileIcon = () => {
           {/* Check if user is logged in, then display image */}
           <img
             className="profile__icon--img"
-            src={user ? null : profilePicture}
+            // src={user ? null : profilePicture}
+            src={profilePicture}
             alt="profile pic"
           />
           <div>
-            {/* To be replaced by user detail's stored in the database */}
-            <h4>Sim Fubara</h4>
+            <h4>{firstName} {lastName}</h4>
             <p>Learner</p>
           </div>
         </div>

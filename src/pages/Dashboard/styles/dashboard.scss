@@ -1,5 +1,6 @@
 .dashboard {
     display: flex;
+    overflow: scroll;
     width: 100%;
 }
 
@@ -33,19 +34,22 @@
         overflow-x: hidden;
     }
     .dashboard__main {
+        width: 100%;
         .community__mobile {
             display: flex;
             justify-content: space-between;
+            margin-inline: 1rem;
         }
         h2:first-of-type {
             color: #848484;
+            display: block;
             font-size: 19px;
             font-weight: 700;
-            margin: 1rem;
-            margin-bottom: 0;
+            margin-top: 1.5rem;
         }
     }
     .dashboard__main--first {
+        padding: 0 1.5rem;
         flex-direction: column;
     }
     .skills-sm {

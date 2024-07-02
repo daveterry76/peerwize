@@ -2,10 +2,6 @@
     div {
         display: flex;
         gap: 10px;
-
-        svg {
-            margin-top: 0.5rem;
-        }
     }
 
     p {
@@ -14,7 +10,6 @@
         font-size: 13px;
         font-weight: 300;
         line-height: 150%;
-        text-align: right;
     }
 
     .add__skill {
@@ -69,6 +64,7 @@
 
             .add__skill-search {
                 border-bottom: none;
+
                 input {
                     border-radius: 8px;
                     background: var(--Grey-Grey01, #F5F5F5);
@@ -89,6 +85,6 @@
 
 @media (max-width: 480px) {
     .skills {
-        width: 310px;
+        width: 100%;
     }
 }

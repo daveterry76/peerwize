@@ -1,15 +1,14 @@
-import React, { useEffect, useContext } from "react";
-import Sidebar from "../../components/Dashboard/Sidebar";
+import { useState, useEffect } from "react";
+
+import Sidebar from "../../components/Sidebar";
 import Navbar from "../../components/Dashboard/Navbar";
 import ProfileDetails from "../../components/Profile/ProfileDetails";
 import PersonalInfo from "../../components/Profile/PersonalInfo";
 import Location from "../../components/Profile/Location";
 import Skills from "../../components/Profile/Skills";
 
-import { MainContext } from "../../contexts/MainContextProvider";
-
 const Profile = () => {
-  const { showSidebar } = useContext(MainContext);
+  const [isSidebarOpened, setIsSidebarOpened] = useState(false);
 
   useEffect(() => {
     document.title = "Profile";
@@ -18,17 +17,17 @@ const Profile = () => {
   return (
     <>
       <div className="dashboard">
-        <div style={{ height: "100vh", position: "sticky", top: "0px" }}>
-          <Sidebar />
+        <div className="h-screen sticky top-0">
+          <Sidebar isOpen={isSidebarOpened} setIsOpen={setIsSidebarOpened} />
         </div>
-        <div
-          className="dashboard__main"
-          style={{ display: "block" }}
-        >
-          <Navbar props={"Profile"} />
-          <div style={{ display: "flex", gap: "4px" }}>
-            <div>
-              <h2>Profile</h2>
+        <div className={`${isSidebarOpened ? "" : "block"} dashboard__main`}>
+          <Navbar
+            props={"Profile"}
+            onHamburgerClick={() => setIsSidebarOpened(true)}
+          />
+          <div className="flex gap-8 max-w-full px-7 lg:pl-0 lg:pr-12">
+            <div className="w-full lg:w-3/4">
+              <h2 className="block lg:hidden">Profile</h2>
               <ProfileDetails />
               <div className="skills-sm">
                 <Skills />
@@ -36,8 +35,8 @@ const Profile = () => {
               <PersonalInfo />
               <Location />
             </div>
-            <div style={{ width: "100%" }}>
-              <div className="skills-lg" >
+            <div className="w-full lg:w-1/4 lg:h-full hidden lg:block">
+              <div className="skills-lg">
                 <Skills />
               </div>
             </div>

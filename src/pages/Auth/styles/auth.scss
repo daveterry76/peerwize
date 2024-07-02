@@ -31,7 +31,7 @@
 }
 
 .auth__container {
-    height: 100vh;
+    // height: 100vh;
     padding-block: 6rem;
     padding-inline: 4rem;
     width: 55%;
@@ -236,18 +236,21 @@
             margin-bottom: 1rem;
         }
 
-        &>.logo {
-            text-align: center;
-        }
+        // &>.logo {
+        //     text-align: center;
+        // }
 
         &>img:first-of-type {
             display: block;
             height: 81px;
-            margin-bottom: 3rem;
+            margin: 0 auto;
+            margin-bottom: 5rem;
+            text-align: center;
             width: 72px;
         }
 
         h3 {
+            font-size: 14px;
             text-align: left;
         }
 

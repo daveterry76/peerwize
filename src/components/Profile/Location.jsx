@@ -1,11 +1,13 @@
-import React from "react";
 import { useState } from "react";
+import { getUserInfo } from "../../config/swr";
+
 import { EditIcon } from "./assets/Icons";
 
 const Location = () => {
-  const [country, setCountry] = useState("Nigeria");
+  const user = getUserInfo();
+  const { country, city } = user?.user;
+
   const [state, setState] = useState("Rivers");
-  const [city, setCity] = useState("Port Harcourt");
   const [houseAddress, setHouseAddress] = useState(
     "#14 Government house, Old Gra. |"
   );
@@ -29,7 +31,6 @@ const Location = () => {
               <label>Country</label>
               <input
                 value={country}
-                onChange={(e) => setCountry(e.target.value)}
                 readOnly={!showEdit}
                 style={{ border: showEdit ? "1px solid gray" : "none" }}
               />
@@ -49,7 +50,6 @@ const Location = () => {
               <label>City</label>
               <input
                 value={city}
-                onChange={(e) => setCity(e.target.value)}
                 readOnly
               />
             </div>

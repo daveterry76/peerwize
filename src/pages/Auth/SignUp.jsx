@@ -129,7 +129,7 @@ const SignUp = () => {
         </h1>
         <div className="flex justify-center items-center gap-4 mt-4 w-full">
           <hr className="w-1/4" />
-          <h3>
+          <h3 className="text-xs">
             Already have an account?&nbsp;
             <Link style={{ textDecoration: "none" }} to="/">
               <span>Login</span>

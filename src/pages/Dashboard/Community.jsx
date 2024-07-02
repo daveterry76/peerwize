@@ -1,19 +1,17 @@
-import React from "react";
-import { useEffect, useState, useContext } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import Navbar from "../../components/Dashboard/Navbar";
-import Sidebar from "../../components/Dashboard/Sidebar";
-
-import { MainContext } from "../../contexts/MainContextProvider";
+import Sidebar from "../../components/Sidebar";
 
 import ChatRoom from "../../components/Community/ChatRoom";
 import { CommunityOptionsIcon } from "../../assets/icons/Icons";
 
 const Community = () => {
-  const stack = "frontend";
+  const [isSidebarOpened, setIsSidebarOpened] = useState(false);
+
+  const stack = "design";
   const [roomName, setRoomName] = useState("");
-  const { showSidebar } = useContext(MainContext);
   const navigate = useNavigate();
 
   const handleRoomNameChange = () => {
@@ -24,30 +22,25 @@ const Community = () => {
     handleRoomNameChange();
     navigate(`${roomName}`);
     document.title = `Community - ${roomName.toUpperCase()}`;
-  }, [roomName]);
+  }, [roomName, navigate]);
 
   return (
     <>
       <div className="dashboard">
-        <div style={{ height: "100vh", position: "sticky", top: "0px" }}>
-          <Sidebar />
+        <div className="h-screen sticky top-0">
+          <Sidebar isOpen={isSidebarOpened} setIsOpen={setIsSidebarOpened} />
         </div>
         <div
           className="dashboard__main"
-          style={{ display: `${showSidebar ? "none" : "block"}` }}
         >
-          <Navbar props={"Community"} />
+          <Navbar props={"Community"} onHamburgerClick={() => setIsSidebarOpened(true)} />
           <div className="community__mobile">
             <h2>Community</h2>
             <CommunityOptionsIcon
-              style={{
-                cursor: "pointer",
-                marginTop: "1rem",
-                marginRight: "1rem",
-              }}
+              className="pointer mt-4 mr-4"
             />
           </div>
-          <div style={{ display: "flex", gap: "4px" }}>
+          <div className="flex gap-1">
             <ChatRoom />
           </div>
         </div>

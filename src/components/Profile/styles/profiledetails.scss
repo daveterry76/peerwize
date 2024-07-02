@@ -6,12 +6,12 @@
     flex-direction: column;
     margin: 1rem;
     align-items: flex-start;
-    padding: 16px 30px;
-    width: fit-content;
+    padding: 16px;
 }
 
 .profile__details {
     @include boxShape;
+    width: 100%;
 
     .profile__details--data {
         display: flex;
@@ -85,8 +85,9 @@
 
 @media (max-width: 480px) {
     .profile__details {
+        margin-inline: 0;
         padding: 0px 10px 10px;
-        width: 320px;
+        width: 100%;
 
         .profile__details--data {
             display: flex;
