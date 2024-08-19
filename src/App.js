@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, Navigate } from "react-router-dom";
 
 import LogIn from "./pages/Auth/LogIn";
 import SignUp from "./pages/Auth/SignUp";
@@ -21,11 +21,12 @@ function App() {
   return (
     <div className="container">
       <Routes>
-        <Route path="/" element={<LogIn />} />
+        <Route path="/" element={<Navigate to="/welcome/" />} />
+        <Route path="/login" element={<LogIn />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
 
-        <Route path="/" element={<ProtectedRoute />}>
+        <Route element={<ProtectedRoute />}>
           <Route path="/dashboard" element={<Dashboard title="Dashboard" />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/community" element={<Community />}>
@@ -35,9 +36,9 @@ function App() {
             <Route path="resource" element={<Resources />} />
             <Route path="saved" element={<SavedCourses />} />
           </Route>
-
-          <Route path="*" element={<NoRoute />} />
         </Route>
+
+        <Route path="*" element={<NoRoute />} />
       </Routes>
     </div>
   );

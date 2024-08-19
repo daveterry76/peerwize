@@ -1,0 +1,19 @@
+{
+    "redirects": [
+        {
+            "source": "/",
+            "destination": "/welcome/",
+            "permanent": false
+        },
+        {
+            "source": "/signup",
+            "destination": "/signup",
+            "permanent": false
+        },
+        {
+            "source": "/login",
+            "destination": "/login",
+            "permanent": false
+        }
+    ]
+}
