@@ -120,7 +120,7 @@ const SignUp = () => {
         <h6>connecting skills, creating futures...</h6>
       </div>
       <div className="auth__container">
-        <Link to="/" className="back__btn">
+        <Link to="/login" className="back__btn">
           <BackArrowIcon />
         </Link>
         <img className="logo" src={logo} alt="peerwize logo" />
