@@ -141,7 +141,7 @@ const LogIn = () => {
           </form>
         </div>
         <h5>
-          By continuing, you agree to our <span>Terms of service</span> and{" "}
+          By continuing, you agree to our <span>Terms of service</span> and
           <span>Privacy policy</span>
         </h5>
       </div>

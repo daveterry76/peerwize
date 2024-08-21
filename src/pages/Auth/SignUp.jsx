@@ -131,7 +131,7 @@ const SignUp = () => {
           <hr className="w-1/4" />
           <h3 className="text-xs">
             Already have an account?&nbsp;
-            <Link style={{ textDecoration: "none" }} to="/">
+            <Link style={{ textDecoration: "none" }} to="/login">
               <span>Login</span>
             </Link>
           </h3>
